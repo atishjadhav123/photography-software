@@ -7,7 +7,7 @@ const cors = require("cors")
 const app = express()
 
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 
 app.use(express.json())
 app.use(cookieParser())
@@ -32,11 +32,11 @@ app.use("*", (req, res) => {
 
 app.use((err, req, res, next) => {
     console.log(err);
-    res.status(500).json({ message: "Server Error", error: err.message });
+    res.status(500).json({ message: "Server Error", error: err.message })
 });
 
 mongoose.connect(process.env.MONGO_URL);
 mongoose.connection.once("open", () => {
     console.log("mongo connected");
-    app.listen(process.env.PORT, console.log("server running"));
+    app.listen(process.env.PORT, console.log("server running"))
 });
