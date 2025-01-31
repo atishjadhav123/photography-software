@@ -7,7 +7,7 @@ const cors = require("cors")
 const app = express()
 
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 
 app.use(express.json())
 app.use(cookieParser())
@@ -22,9 +22,9 @@ app.use("/api/transaction", require("./routes/transaction.route"))
 app.use("/api/contact", require("./routes/contact.route"))
 app.use("/api/booking", require("./routes/booking.route"))
 
-// app.use("*", (req, res) => {
-//     res.status(404).json({ message: `route not found ${req.method}:${req.url}` })
-// })
+app.use("*", (req, res) => {
+    res.status(404).json({ message: `route not found ${req.method}:${req.url}` })
+})
 
 app.use("*", (req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"))
